@@ -2,8 +2,10 @@
  * Created by liumingming on 16/5/15.
  */
 require.config({
+    baseUrl: './',
     paths: {
-        'jquery': './lib/jquery-1.8.3.min'
+        jquery: 'lib/jquery-1.8.3.min',
+        jqueryUI: 'lib/jquery-ui.min'
     }
 });
 
@@ -16,8 +18,10 @@ require(['jquery', 'window'], function ($, window) {
             height: 200,
             title: '系统消息',
             y: 50,
-            skinClassName: 'info',
-            btnClose: false,
+            skinClassName: 'default',
+            btnOkText: '确定',
+            btnOkSkin: 'info',
+            btnClose: true,
             btnOkHandler: function () {
                 console.log('...');
             }

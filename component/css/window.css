@@ -1,5 +1,7 @@
 .panel {
     position: fixed;
+    z-index: 5000;
+    box-shadow: 0 0 10px #444;
 }
 
 .panel-heading {
@@ -22,4 +24,14 @@
     cursor: pointer;
     font-size: 20px;
     margin-top: -5px;
+}
+
+.window-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 4000;
+    height: 100%;
+    background-color: rgba(204, 204, 204, 0.58);
 }
