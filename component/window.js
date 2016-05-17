@@ -1,7 +1,7 @@
 /**
  * Created by liumingming on 16/5/15.
  */
-define(['jquery', 'jqueryUI'], function ($, $UI) {
+define(['widget', 'jquery', 'jqueryUI'], function (widget, $, $UI) {
     function Window() {
         //定义字典
         this.option = {
@@ -17,13 +17,14 @@ define(['jquery', 'jqueryUI'], function ($, $UI) {
             skinClassName: 'default',
             hasMask: true,
             isDraggable: true
-        }
+        };
     }
 
-    Window.prototype = {
+    Window.prototype = $.extend({}, new widget.Widget(), {
         alert: function (option) {
             //使用默认值还是用户自定义
             var opt = $.extend(this.option, option);
+            var that = this;
             //需要使用到的DOM对象
             var $panel = $("<div class='panel panel-" + opt.skinClassName + "'></div>");
             var $panelHeading = $("<div class='panel-heading'></div>");
@@ -49,9 +50,9 @@ define(['jquery', 'jqueryUI'], function ($, $UI) {
             if (opt.btnClose) {
                 $panelHeading.append(opt.title, $headClose);
                 $headClose.click(function () {
-                    opt.btnCloseHandler && opt.btnCloseHandler();
                     $panel.remove();
                     $mask && $mask.remove();
+                    that.fire("closeHandler");
                 });
             } else {
                 $panelHeading.append(opt.title);
@@ -60,9 +61,9 @@ define(['jquery', 'jqueryUI'], function ($, $UI) {
             var $btnOk = $("<input type='button' class='btn'/>").addClass("btn-" + opt.btnOkSkin).val(opt.btnOkText);
             $btnOk.appendTo($panelFooter);
             $btnOk.click(function () {
-                opt.btnOkHandler && opt.btnOkHandler();
                 $panel.remove();
                 $mask && $mask.remove();
+                that.fire("okHandler");
             });
             //指定宽高
             $panel.css({
@@ -71,7 +72,15 @@ define(['jquery', 'jqueryUI'], function ($, $UI) {
                 left: (opt.x || (window.innerWidth - opt.width) / 2) + 'px',
                 top: (opt.y || (window.innerHeight - opt.height) / 2) + 'px'
             });
-            $panelBody.css({'min-height': opt.height - (95) + 'px'})
+            $panelBody.css({'min-height': opt.height - (95) + 'px'});
+            //方法自带回调函数
+            if (opt.btnCloseHandler) {
+                that.on("closeHandler", opt.btnCloseHandler);
+            }
+            if (opt.btnOkHandler) {
+                that.on("okHandler", opt.btnOkHandler);
+            }
+            return this;
         },
         confirm: function () {
 
@@ -79,6 +88,22 @@ define(['jquery', 'jqueryUI'], function ($, $UI) {
         prompt: function () {
 
         }
-    };
+    });
     return new Window();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -25,6 +25,10 @@ require(['jquery', 'window'], function ($, window) {
             btnOkHandler: function () {
                 console.log('...');
             }
+        }).on("okHandler", function () {
+            console.log('点击确定按钮触发事件1..');
+        }).on("okHandler", function () {
+            console.log('点击确定按钮触发事件2..');
         });
     });
 
