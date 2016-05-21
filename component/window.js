@@ -13,73 +13,80 @@ define(['widget', 'jquery', 'jqueryUI'], function (widget, $, $UI) {
             btnOkText: '确定',
             btnOkSkin: 'success',
             btnCloseHandler: null,
-            btnClose: true,
+            btnClose: false,
             skinClassName: 'default',
-            hasMask: true,
+            hasMask: false,
             isDraggable: true
         };
     }
 
-    Window.prototype = $.extend({}, new widget.Widget(), {
-        alert: function (option) {
-            //使用默认值还是用户自定义
-            var opt = $.extend(this.option, option);
-            var that = this;
-            //需要使用到的DOM对象
-            var $panel = $("<div class='panel panel-" + opt.skinClassName + "'></div>");
-            var $panelHeading = $("<div class='panel-heading'></div>");
-            var $panelBody = $("<div class='panel-body'></div>");
-            var $panelFooter = $("<div class='panel-footer'></div>");
-            var $headClose = $('<span class="panel-close" title="关闭">x</span>');
-            var $mask = $("<div class='window-mask'></div>");
-            //添加主体区域
-            $panel.appendTo("body");
-            $panel.append($panelHeading);
-            $panel.append($panelBody);
-            $panel.append($panelFooter);
-            $panelBody.html(opt.content);
-            //添加弹框模态
-            if (opt.hasMask) {
-                $mask.appendTo("body");
-            }
-            //是否可以拖动
-            if (opt.isDraggable) {
-                $panel.draggable({handle: '.panel-heading'});
-            }
-            //判断是否显示关闭按钮
-            if (opt.btnClose) {
-                $panelHeading.append(opt.title, $headClose);
-                $headClose.click(function () {
-                    $panel.remove();
-                    $mask && $mask.remove();
-                    that.fire("closeHandler");
-                });
+    Window.prototype = $.extend({}, widget, {
+        /**添加dom节点*/
+        renderUI: function () {
+            //弹框主体
+            this.$panel = $("<div class='panel panel-" + this.option.skinClassName + "'>" +
+                "<div class='panel-heading'></div>" +
+                "<div class='panel-body'>" + this.option.content + "</div>" +
+                "<div class='panel-footer'>" +
+                "<input type='button' class='btn btn-" + this.option.btnOkSkin + " ok' value='" + this.option.btnOkText + "'/>" +
+                "</div>" +
+                "</div>");
+            //添加模态
+            if (this.option.hasMask) {
+                this._$mask = $("<div class='window-mask has-mask'></div>");
+                this._$mask.appendTo("body");
             } else {
-                $panelHeading.append(opt.title);
+                this._$mask = $("<div class='window-mask no-mask'></div>");
+                this._$mask.appendTo("body");
             }
-            //添加按钮
-            var $btnOk = $("<input type='button' class='btn'/>").addClass("btn-" + opt.btnOkSkin).val(opt.btnOkText);
-            $btnOk.appendTo($panelFooter);
-            $btnOk.click(function () {
-                $panel.remove();
-                $mask && $mask.remove();
+            //是否需要关闭按钮
+            if (this.option.btnClose) {
+                var $headClose = $('<span class="panel-close" title="关闭">x</span>');
+                this.$panel.find(".panel-heading").append(this.option.title, $headClose);
+            } else {
+                this.$panel.find(".panel-heading").append(this.option.title);
+            }
+        },
+        /**节点监听事件*/
+        bindUI: function () {
+            var that = this;
+            this.$panel.delegate("input[class*=ok]", "click", function () {
                 that.fire("okHandler");
+                that.destroy();
+            }).delegate(".panel-close", "click", function () {
+                that.fire("closeHandler");
+                that.destroy();
             });
-            //指定宽高
-            $panel.css({
-                width: opt.width + 'px',
-                height: opt.height + 'px',
-                left: (opt.x || (window.innerWidth - opt.width) / 2) + 'px',
-                top: (opt.y || (window.innerHeight - opt.height) / 2) + 'px'
+            //非链式结构书写
+            if (this.option.btnCloseHandler) {
+                that.on("closeHandler", this.option.btnCloseHandler);
+            }
+            if (this.option.btnOkHandler) {
+                that.on("okHandler", this.option.btnOkHandler);
+            }
+        },
+        /**初始化组件属性*/
+        syncUI: function () {
+            //基本样式
+            this.$panel.css({
+                width: this.option.width + 'px',
+                height: this.option.height + 'px',
+                left: (this.option.x || (window.innerWidth - this.option.width) / 2) + 'px',
+                top: (this.option.y || (window.innerHeight - this.option.height) / 2) + 'px'
             });
-            $panelBody.css({'min-height': opt.height - (95) + 'px'});
-            //方法自带回调函数
-            if (opt.btnCloseHandler) {
-                that.on("closeHandler", opt.btnCloseHandler);
+            this.$panel.find(".panel-body").css({'min-height': this.option.height - (95) + 'px'});
+            //是否拖动
+            if (this.option.isDraggable) {
+                this.$panel.draggable({handle: '.panel-heading'});
             }
-            if (opt.btnOkHandler) {
-                that.on("okHandler", opt.btnOkHandler);
-            }
+        },
+        /**销毁前的处理方法*/
+        destructor: function () {
+            this._$mask && this._$mask.remove();
+        },
+        alert: function (option) {
+            $.extend(this.option, option);
+            this.render();
             return this;
         },
         confirm: function () {
@@ -89,7 +96,7 @@ define(['widget', 'jquery', 'jqueryUI'], function (widget, $, $UI) {
 
         }
     });
-    return new Window();
+    return {Window: Window};
 });
 
 

@@ -33,5 +33,13 @@
     width: 100%;
     z-index: 4000;
     height: 100%;
+}
+
+.has-mask {
     background-color: rgba(204, 204, 204, 0.58);
 }
+
+.no-mask {
+    background-color: rgba(204, 204, 204, 0);
+}
+

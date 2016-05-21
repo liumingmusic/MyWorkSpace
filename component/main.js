@@ -9,19 +9,19 @@ require.config({
     }
 });
 
-require(['jquery', 'window'], function ($, window) {
+require(['jquery', 'window'], function ($, w) {
 
     $("#a").click(function () {
-        window.alert({
+        new w.Window().alert({
             content: '消息',
             width: 400,
             height: 200,
             title: '系统消息',
             y: 50,
-            skinClassName: 'default',
+            skinClassName: 'danger',
             btnOkText: '确定',
             btnOkSkin: 'info',
-            btnClose: true,
+            btnClose: false,
             btnOkHandler: function () {
                 console.log('...');
             }
