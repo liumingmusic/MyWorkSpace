@@ -12,6 +12,9 @@ define(['widget', 'jquery', 'jqueryUI'], function (widget, $, $UI) {
             btnOkHandler: null,
             btnOkText: '确定',
             btnOkSkin: 'success',
+            btnCancelHandler: null,
+            btnCancelText: '取消',
+            btnCancelSkin: 'default',
             btnCloseHandler: null,
             btnClose: false,
             skinClassName: 'default',
@@ -23,13 +26,31 @@ define(['widget', 'jquery', 'jqueryUI'], function (widget, $, $UI) {
     Window.prototype = $.extend({}, widget, {
         /**添加dom节点*/
         renderUI: function () {
+            //根据不同的消息框,定制不同的footer
+            var footerContent = "";
+            switch(this.option.winType){
+                case 'alert':
+                    footerContent = "<input type='button' class='btn btn-" + this.option.btnOkSkin + " ok' value='" + this.option.btnOkText + "'/>";
+                    break;
+                case 'confirm':
+                    footerContent = "<input type='button' class='btn btn-" + this.option.btnOkSkin + " ok' value='" + this.option.btnOkText + "'/>" +
+                        "<input type='button' class='btn btn-" + this.option.btnCancelSkin + " cancel' value='" + this.option.btnCancelText + "'/>";
+                    break;
+                case 'prompt':
+                    footerContent = "";
+                    break;
+                default :
+                    footerContent = "";
+                    break;
+            }
             //弹框主体
-            this.$panel = $("<div class='panel panel-" + this.option.skinClassName + "'>" +
-                "<div class='panel-heading'></div>" +
-                "<div class='panel-body'>" + this.option.content + "</div>" +
-                "<div class='panel-footer'>" +
-                "<input type='button' class='btn btn-" + this.option.btnOkSkin + " ok' value='" + this.option.btnOkText + "'/>" +
-                "</div>" +
+            this.$panel =
+                $("<div class='panel panel-" + this.option.skinClassName + "'>" +
+                    "<div class='panel-heading'></div>" +
+                    "<div class='panel-body'>" + this.option.content + "</div>" +
+                    "<div class='panel-footer'>" +
+                        footerContent+
+                    "</div>" +
                 "</div>");
             //添加模态
             if (this.option.hasMask) {
@@ -53,6 +74,9 @@ define(['widget', 'jquery', 'jqueryUI'], function (widget, $, $UI) {
             this.$panel.delegate("input[class*=ok]", "click", function () {
                 that.fire("okHandler");
                 that.destroy();
+            }).delegate("input[class*=cancel]", "click", function () {
+                that.fire("cancelHandler");
+                that.destroy();
             }).delegate(".panel-close", "click", function () {
                 that.fire("closeHandler");
                 that.destroy();
@@ -63,6 +87,9 @@ define(['widget', 'jquery', 'jqueryUI'], function (widget, $, $UI) {
             }
             if (this.option.btnOkHandler) {
                 that.on("okHandler", this.option.btnOkHandler);
+            }
+            if (this.option.btnCancelHandler) {
+                that.on("okHandler", this.option.btnCancelHandler);
             }
         },
         /**初始化组件属性*/
@@ -85,18 +112,20 @@ define(['widget', 'jquery', 'jqueryUI'], function (widget, $, $UI) {
             this._$mask && this._$mask.remove();
         },
         alert: function (option) {
-            $.extend(this.option, option);
+            $.extend(this.option, option, {winType:'alert'});
             this.render();
             return this;
         },
-        confirm: function () {
-
+        confirm: function (option) {
+            $.extend(this.option, option, {winType:'confirm'});
+            this.render();
+            return this;
         },
         prompt: function () {
 
         }
     });
-    return {Window: Window};
+    return new Window();
 });
 
 

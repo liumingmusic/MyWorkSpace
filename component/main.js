@@ -9,10 +9,10 @@ require.config({
     }
 });
 
-require(['jquery', 'window'], function ($, w) {
+require(['jquery', 'window'], function ($, window) {
 
     $("#a").click(function () {
-        new w.Window().alert({
+        window.alert({
             content: '消息',
             width: 400,
             height: 200,
@@ -21,14 +21,31 @@ require(['jquery', 'window'], function ($, w) {
             skinClassName: 'danger',
             btnOkText: '确定',
             btnOkSkin: 'info',
-            btnClose: false,
-            btnOkHandler: function () {
-                console.log('...');
-            }
+            btnClose: true
         }).on("okHandler", function () {
-            console.log('点击确定按钮触发事件1..');
+            console.log('点击确定按钮触发事件');
+        }).on("closeHandler", function () {
+            console.log('点击关闭按钮按钮触发事件');
+        });
+    });
+
+    $("#a1").click(function () {
+        window.confirm({
+            content: '警告',
+            width: 400,
+            height: 200,
+            title: '系统消息',
+            y: 50,
+            skinClassName: 'danger',
+            btnOkText: '删除',
+            btnOkSkin: 'danger',
+            btnClose: true
         }).on("okHandler", function () {
-            console.log('点击确定按钮触发事件2..');
+            console.log('点击确定按钮触发事件');
+        }).on("cancelHandler", function () {
+            console.log('点击取消按钮触发事件');
+        }).on("closeHandler", function () {
+            console.log('点击关闭按钮按钮触发事件');
         });
     });
 
