@@ -1,0 +1,47 @@
+@charset "UTF-8";
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "微软雅黑";
+    font-size: 16px;
+}
+
+.container {
+    height: calc(100vh);
+    width: 100%;
+}
+
+.left-control {
+    width: 280px;
+    border-right: 2px solid #cbcaca;
+    height: 100%;
+    float: left;
+}
+
+.right-render {
+    width: calc(100vw - 282px);
+    float: left;
+    height: 100%;
+}
+
+.title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid #ccc;
+}
+
+.create {
+
+}
+
+.graph {
+
+}
+
+.surface {
+
+}

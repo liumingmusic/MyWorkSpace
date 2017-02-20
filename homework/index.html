@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homework</title>
+</head>
+<body>
+<script src="./js/WeekModule.js"></script>
+<script src="./js/ObserverModule.js"></script>
+<script>
+
+    // 1
+    console.log(WeekModule.getDaysByWeek(2016, 1, 1));
+    console.log(WeekModule.getDaysByWeek(2016, 2, 1));
+    console.log(WeekModule.getDaysByWeek(2016, 3, 1));
+    console.log(WeekModule.getDaysByWeek(2016, 4, 1));
+    console.log(WeekModule.getDaysByWeek(2016, 4, 2));
+
+    // 2
+    ObserverModule.regist("test", function (obj) {
+        console.log(obj.type);
+        console.log(obj.data);
+    });
+    ObserverModule.fire("test", {msg: "我传递的参数哦！"});
+
+    // 3 底层原理还未明白，暂时不会做
+
+    // 4
+    /**
+     *    jQuery最核心的是选择器，各种各样的匹配规则(有最基本，有和CSS3差不多的选择器，有单独处理表单的选择器等)，如已知一个dom元素，可以根据当前元素获取
+     * 子节点、兄弟节点、父节点(可以说页面相关都能获取，只是效率高低的问题)，效率最高#id选择器(直接调动document.getElementById)，其次是Tag选择器
+     * 调用(document.getElementsByTag)，最后才是Class选择器(需要通过解析 HTML 文档树，并且需要在浏览器内核外递归，这种递归遍历是无法被优化的)，如果
+     * 不考虑效率，单纯为了工作，都是可以实现选择的。
+     *    接下来就是和各种的属性操作相关的API、CSS操作API、文档处理API、事件处理API等等，对于这些提供的API，在实际开发中也不会全部使用到，对于开发者来说
+     * 应该达到每个API大致是什么意思、有什么用途和相同API的差异(append appendTo)，实在不清楚完全可以借助查阅API，在能力尚未达到一定的境界，没有一个开发者说
+     * 熟知每一个API的功能用途(其实这也和我们学习英语一样，不经常使用就会变得模糊，而且你也不可能将所有技术都学完)，所以查阅API的能力是一个开发必备的能力
+     * 也是最重要的一个能力。
+     *    在熟练使用了jQuery相关的API之后，应该更加明白各个方法之间的差异和优缺点，性能，以至于让自己能够写出更加好的代码(比如现在的模块化js开发)
+     *    在往后就需要明白jQuery源码了，阅读源码。在学习到达一个瓶颈之后才会返璞归真了解底层原理。现在市面上各种各样的框架出现(一方面是提高了开发效率，但是
+     * 最基本，最原始的往往会被遗忘）。
+     *    题外话，对于做产品我一直坚信 用户体验、性能和安全是必须要考虑的。
+     *    用户体验：直接决定产品给用户的第一体验，觉得看起来不爽，就有一种阻碍
+     *    性能：虽然做得是很炫，是很酷，但是响应太慢，实在无法忍受（2 5 8性能原则）
+     *    安全：谁也不能保证做的东西不会被不法分子攻击
+     */
+
+
+</script>
+</body>
+</html>
