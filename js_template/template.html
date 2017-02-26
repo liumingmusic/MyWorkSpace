@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>javascript模板</title>
+</head>
+<body>
+	
+	
+
+	<script type="text/html" id="tmp">
+		<ul>
+		    <% for(var i in items){ %>
+		        <li class='<% items[i].status %>'><% items[i].text %></li>
+		    <% } %>
+		</ul>
+	</script>	
+
+	<script>
+		var tmp = document.getElementById("tmp").innerHTML;
+		var items = [
+		    { text: 'text1' ,status:'done' },
+		    { text: 'text2' ,status:'pending' },
+		    { text: 'text3' ,status:'pending' },
+		    { text: 'text4' ,status:'processing' }
+		];
+
+		//最终拼接字符串效果
+		function one(item){
+			var temp = "";
+			temp += "<ul>";
+			for(var i in items){
+		        temp += "<li class='" + items[i].status + "'>" + items[i].text + "</li>";
+		    }
+		    temp += "</ul>";
+		}
+
+		function template(id, data){
+			var tmp = document.getElementById(id).innerHTML;
+			var matcher = /<%=(.*?)%>|<%(.*?)%>|$/g;
+			var regOut = /if|for|else|switch|case|break|var|{|}/g;
+			//模板文本中的特殊字符转义处理
+			var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g;
+			var escapes = {
+			    "'":      "'",
+			    '\\':     '\\',
+			    '\r':     'r',
+			    '\n':     'n',
+			    '\t':     't',
+			    '\u2028': 'u2028',
+			    '\u2029': 'u2029'
+			};
+			//记录当前扫描到哪里了
+			var index = 0; 
+			//定义拼接的字符串
+			var _body = "var temp = '';";
+			//追加本体
+			_body += "temp += '";
+			tmp.replace(matcher, function(match, interpolate, evaluate, offset){
+				//找到第一个匹配后，将前面部分作为普通字符串拼接的表达式 案例主要拼接 <ul> 部分
+				_body += tmp.slice(index, offset).replace(escaper, function(match) { return '\\' + escapes[match]; });
+				//如果是<% ... %>直接作为代码片段，evaluate就是捕获的分组,在这里我们可以判断 interpolate是否包含 if else for break {} 等等javascript表达式
+				if(evaluate){
+					_body += "';" + evaluate + " temp +='";
+				}
+				//如果是<%= ... %>拼接字符串，interpolate就是捕获的分组
+				if(interpolate){
+					_body += "' + " + interpolate + "+ '";
+				}
+				//递增index，跳过evaluate或者interpolate
+            	index = offset + match.length;
+			});
+			_body += "';return temp;";
+			var render = new Function('obj', _body);
+			return render(data);
+		}
+
+		//console.log(template("tmp", items))
+
+		function template_1(id, data){
+			var tmp = document.getElementById(id).innerHTML;
+			var matcher = /<%(.*?)%>/g;
+			var regOut = /if|for|else|switch|case|break|var|{|}/g;
+			//记录当前扫描到哪里了
+			var index = 0; 
+			//定义拼接的字符串
+			var _body = "var temp = '';";
+			//追加本体
+			_body += "temp += '";
+			tmp.replace(matcher, function(match, interpolate, offset){
+				console.log("----------------");
+				console.log(match);
+				console.log(interpolate);
+				console.log(offset);
+				console.log("----------------");
+			});
+		}
+
+		console.log(template_1("tmp", items))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
