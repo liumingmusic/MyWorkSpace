@@ -11,7 +11,7 @@
 	<script type="text/html" id="tmp">
 		<ul>
 		    <% for(var i in items){ %>
-		        <li class='<% items[i].status %>'><% items[i].text %></li>
+		        <li class='<%= items[i].status %>'><%= items[i].text %></li>
 		    <% } %>
 		</ul>
 	</script>	
@@ -38,7 +38,6 @@
 		function template(id, data){
 			var tmp = document.getElementById(id).innerHTML;
 			var matcher = /<%=(.*?)%>|<%(.*?)%>|$/g;
-			var regOut = /if|for|else|switch|case|break|var|{|}/g;
 			//模板文本中的特殊字符转义处理
 			var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g;
 			var escapes = {
@@ -76,36 +75,6 @@
 		}
 
 		//console.log(template("tmp", items))
-
-		function template_1(id, data){
-			var tmp = document.getElementById(id).innerHTML;
-			var matcher = /<%(.*?)%>/g;
-			var regOut = /if|for|else|switch|case|break|var|{|}/g;
-			//记录当前扫描到哪里了
-			var index = 0; 
-			//定义拼接的字符串
-			var _body = "var temp = '';";
-			//追加本体
-			_body += "temp += '";
-			tmp.replace(matcher, function(match, interpolate, offset){
-				console.log("----------------");
-				console.log(match);
-				console.log(interpolate);
-				console.log(offset);
-				console.log("----------------");
-			});
-		}
-
-		console.log(template_1("tmp", items))
-
-
-
-
-
-
-
-
-
 
 
 

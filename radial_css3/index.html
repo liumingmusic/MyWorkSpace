@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>径向运动</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="nav-wrap">
+        <nav>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+        </nav>
+        <a href="#" class="main-nav">菜单</a>
+    </div>
+    <script src="./js/jquery-2.1.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".nav-wrap > .main-nav").click(function (e) {
+                e.preventDefault;
+                var $this = $(this);
+                var $navWrap = $this.closest('.nav-wrap');
+                var $navs = $navWrap.find("nav a");
+                //激活时触发
+                if (!$navWrap.hasClass('active')) {
+                    //圆的半径
+                    var radius = $navWrap.width() / 2;
+                    //起始角度和结束角度
+                    var startAngle = 0, endAngle = 360;
+                    //两个子菜单的夹角
+                    var gap = (endAngle - startAngle) / $navs.length;
+                    //循环计算各个子菜单的位置
+                    $.each($navs, function (index, item) {
+                        //当前子菜单与X轴的正向夹角  弧度
+                        var angle = (startAngle + gap * index) * (Math.PI / 180);
+                        //加上radius的目的是让园移动到正方形的中心
+                        var x = radius + radius * Math.cos(angle);
+                        var y = radius + radius * Math.sin(angle);
+                        //设置样式
+                        $(this).css({
+                            "left": x + "px",
+                            "top": y + "px"
+                        });
+                    });
+                }
+                $navWrap.toggleClass("active");
+            });
+        });
+    </script>
+</body>
+
+</html>
