@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+
+    <ul class="img-container" id="container">
+    </ul>
+
+    <script src="./js/lib/zepto.js"></script>
+    <script>
+        //基础变量
+        var totle = 17;
+        var zWin = $(window);
+        //渲染方法
+        var render = function () {
+            //图片之间的间隙
+            var padding = 2;
+            //屏幕宽度
+            var winWidth = zWin.width();
+            //图片宽度
+            var picWidth = Math.floor((winWidth - padding * 2) / 3);
+            //循环渲染
+            var temp = "";
+            for (var i = 1; i <= 17; i++) {
+                var p = padding;
+                var imgSrc = "./images/" + i + ".jpg";
+                //第一张图片是没有padding-left
+                if (i % 3 === 1) {
+                    p = 0;
+                }
+                //字符串拼接
+                temp += '<li style="width:' + picWidth + 'px;height:' + picWidth +
+                    'px;padding-top:' + padding + 'px;padding-left:' + p + 'px"><img src="' + imgSrc + '" alt="' +
+                    imgSrc + '"></li>';
+            }
+            $("#container").html(temp);
+        }
+
+        //调用方法
+        render();
+    </script>
+</body>
+
+</html>
