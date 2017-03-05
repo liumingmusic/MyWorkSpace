@@ -10,47 +10,75 @@
 </head>
 
 <body>
-    <div class="nav-wrap">
-        <nav>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-        </nav>
-        <a href="#" class="main-nav">菜单</a>
+    <div class="row">
+        <!--基本图形，圆形-->
+        <div class="col">
+            <div class="nav-wrap circle" id="circle">
+                <nav>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">7</a>
+                    <a href="#">8</a>
+                </nav>
+                <a href="#" class="main-nav">菜单</a>
+            </div>
+        </div>
+        <!--基本图形 椭圆-->
+        <div class="col">
+            <div class="nav-wrap ellipse" id="ellipse">
+                <nav>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">7</a>
+                </nav>
+                <a href="#" class="main-nav">菜单</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--1/4园-->
+        <div class="col">
+            <div class="nav-wrap half-circle" id="half-circle">
+                <nav>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                </nav>
+                <a href="#" class="main-nav">菜单</a>
+            </div>
+        </div>
+        <!--半椭圆-->
+        <div class="col">
+            <div class="nav-wrap half-ellipse" id="half-ellipse">
+                <nav>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                </nav>
+                <a href="#" class="main-nav">菜单</a>
+            </div>
+        </div>
     </div>
     <script src="./js/jquery-2.1.1.min.js"></script>
+    <script src="./js/radius.js"></script>
     <script>
         $(function () {
-            $(".nav-wrap > .main-nav").click(function (e) {
-                e.preventDefault;
-                var $this = $(this);
-                var $navWrap = $this.closest('.nav-wrap');
-                var $navs = $navWrap.find("nav a");
-                //激活时触发
-                if (!$navWrap.hasClass('active')) {
-                    //圆的半径
-                    var radius = $navWrap.width() / 2;
-                    //起始角度和结束角度
-                    var startAngle = 0, endAngle = 360;
-                    //两个子菜单的夹角
-                    var gap = (endAngle - startAngle) / $navs.length;
-                    //循环计算各个子菜单的位置
-                    $.each($navs, function (index, item) {
-                        //当前子菜单与X轴的正向夹角  弧度
-                        var angle = (startAngle + gap * index) * (Math.PI / 180);
-                        //加上radius的目的是让园移动到正方形的中心
-                        var x = radius + radius * Math.cos(angle);
-                        var y = radius + radius * Math.sin(angle);
-                        //设置样式
-                        $(this).css({
-                            "left": x + "px",
-                            "top": y + "px"
-                        });
-                    });
-                }
-                $navWrap.toggleClass("active");
-            });
+            RadiuslMotion.create("#circle");
+            RadiuslMotion.create("#ellipse");
+            RadiuslMotion.create("#half-circle", 270, 450);
+            RadiuslMotion.create("#half-ellipse", 0, 180);
         });
     </script>
 </body>

@@ -7,15 +7,23 @@ body{
     font-family: "微软雅黑"
 }
 
+/*flex布局*/
+.row{
+    display: flex;
+    justify-content: space-around;
+}
+.row .col{
+    margin: 70px 0;
+}
+
+/*主区域样式控制*/
 .nav-wrap{
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 120px auto 20px;
     border: 2px dotted #4e5061;
     border-radius: 50%;
 }
 
+/*按钮样式控制*/
 .nav-wrap .main-nav{
     position: absolute;
     left: 50%;
@@ -34,20 +42,23 @@ body{
     cursor: pointer;
 }
 
+/*小按钮外层包括的div块*/
 .nav-wrap nav{
     position: absolute;
     height: 100%;
     width: 100%;
     transform: scale(0);
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
     opacity: 0;
 }
 
+/*样式控制*/
 .nav-wrap.active nav{
     transform: scale(1);
     opacity: 1;
 }
 
+/*每一个小块样式*/
 .nav-wrap nav > a{
     position: absolute;
     width: 30px;
@@ -60,4 +71,25 @@ body{
     text-shadow: 1px 1px 0 #000;
     text-decoration: none;
     transform: translate(-50%,-50%);
+}
+
+/*各个图形的样式控制*/
+.circle{
+    width: 200px;
+    height: 200px;
+}
+
+.ellipse{
+    width: 600px;
+    height: 200px;
+}
+
+.half-circle{
+    width: 200px;
+    height: 200px;
+}
+
+.half-ellipse{
+    width: 600px;
+    height: 200px;
 }
