@@ -21,13 +21,14 @@
 
 
     <script src="./js/lib/zepto.js"></script>
-    <script src="./js/lib/zepto-touch.js"></script>
+    <script src="./js/lib/zepto.touch.js"></script>
     <script>
         //基础变量
         var totle = 17;
         var zWin = $(window);
         var $container = $("#container");
         var $largeContainer = $("#large_container");
+        var largeImg = $("#large_img");
         var index; //控制翻页的变量值
         //渲染方法
         var _render = function () {
@@ -69,6 +70,7 @@
                 _loadImg(_id);
             });
             //关闭显示框
+            var $largeImg = $(large_img);
             $largeContainer
                 .tap(_closeShow)
                 .swipeLeft(_toLeft)
@@ -119,6 +121,7 @@
                         "padding-top": paddingTop
                     })
                 }
+                index = id;
                 //回调函数
                 callback && callback($largeImg);
             }
@@ -139,11 +142,11 @@
             } else {
                 _loadImg(index, function () {
                     //移除之前的样式
-                    dom[0].addEventListener("webkitAnimationEnd", function () {
-                        dom.removeClass("animated bounceInRight");
-                        dom[0].removeEventListener("webkitAnimationEnd", false);
+                    largeImg[0].addEventListener("webkitAnimationEnd", function () {
+                        largeImg.removeClass("animated bounceInRight");
+                        largeImg[0].removeEventListener("webkitAnimationEnd", false);
                     }, false);
-                    dom.addClass("animated bounceInRight");
+                    largeImg.addClass("animated bounceInRight");
                 });
             }
         }
@@ -156,11 +159,11 @@
             } else {
                 _loadImg(index, function () {
                     //   移除之前的样式
-                    dom[0].addEventListener("webkitAnimationEnd", function () {
-                        dom.removeClass("animated bounceInLeft");
-                        dom[0].removeEventListener("webkitAnimationEnd", false);
+                    largeImg[0].addEventListener("webkitAnimationEnd", function () {
+                        largeImg.removeClass("animated bounceInLeft");
+                        largeImg[0].removeEventListener("webkitAnimationEnd", false);
                     }, false);
-                    dom.addClass("animated bounceInLeft");
+                    largeImg.addClass("animated bounceInLeft");
                 });
             }
         }
@@ -169,6 +172,9 @@
         $(function () {
             //调用方法
             _render();
+            document.addEventListener('touchstart', function (event) {
+                event.preventDefault();
+            }, false);
         })
     </script>
 </body>
