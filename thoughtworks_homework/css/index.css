@@ -249,16 +249,17 @@ li .info-list .info-list-inner {
     margin-left: 2px;
     font-weight: bold;
     line-height: 10px;
-    padding-left: 1px;
+    padding-left: 29px;
     top: 4px;
     padding: 0;
-    width: 11px;
+    width: 13px;
     height: 13px;
     border: 2px solid #a7a590;
     border-radius: 6px;
     color: #a7a590;
     font-weight: bold;
     cursor: pointer;
+    text-align: center;
 }
 
 .deny {
@@ -285,7 +286,9 @@ li .info-list .info-list-inner {
     font-weight: bold;
     cursor: pointer;
     padding-right: 0px;
-    transform: rotateZ(50deg);
+    -webkit-transform: rotateZ(50deg);
+        -ms-transform: rotateZ(50deg);
+            transform: rotateZ(50deg);
 }
 
 
@@ -481,7 +484,7 @@ li .info-list .info-list-inner {
     }
     .resource .resource-del {
         top: 1px;
-        padding-left: 3px;
+        padding-left: 0;
     }
     .deny span {
         top: 1px;
