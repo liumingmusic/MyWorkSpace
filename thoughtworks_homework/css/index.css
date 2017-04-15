@@ -1,0 +1,432 @@
+@charset "UTF-8";
+body {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+/*login info*/
+
+.login-info {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.text {
+    color: #47392c;
+}
+
+.login-info .user {
+    margin-right: 20px;
+}
+
+.login-info img {
+    vertical-align: top;
+}
+
+.login-info .text {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+/*header tabs */
+
+.header .header-top {
+    height: 70px;
+    border-bottom: 3px solid #383838;
+    line-height: 40px;
+}
+
+.header-top .logo-text {
+    float: left;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 70px;
+}
+
+.header-top .tabs {
+    float: right;
+    height: 100%;
+}
+
+
+/*tabs 样式书写*/
+
+.header-top .tabs span {
+    display: block;
+    height: 40px;
+    border-top: 3px solid #383838;
+    border-right: 3px solid #383838;
+    border-left: 3px solid #383838;
+    padding: 0 10px 0 10px;
+    border-radius: 15px 15px 0 0;
+    margin-left: 5px;
+    float: left;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+
+/*选中tabs样式*/
+
+.header-top .tabs span.active {
+    height: 42px;
+    margin-top: 23px;
+    padding-top: 5px;
+    background-color: #606060;
+    color: #f2f2f2;
+}
+
+
+/*header 筛选条件样式*/
+
+.header .menu {
+    height: 30px;
+    border-left: 3px solid #383838;
+    border-right: 3px solid #383838;
+    border-bottom: 3px solid #383838;
+    background-color: #606060;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    line-height: 30px;
+}
+
+
+/*menu 条件过滤信息*/
+
+.menu .menu-title {
+    font-size: 30px;
+    color: #e9e5d9;
+    margin-right: 10px;
+}
+
+.menu .list {
+    color: #383838;
+    width: 87px;
+    border: 3px solid #424141;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 17px;
+    text-align: center;
+    background-color: #9a9a9a;
+    border-radius: 20px;
+    height: 30px;
+}
+
+.menu span.menu-active {
+    background-color: #dedede;
+}
+
+
+/*内容承载区域,使用双飞翼布局*/
+
+.main {
+    min-height: 400px;
+    border-right: 3px solid #383838;
+    border-left: 3px solid #383838;
+    border-bottom: 3px solid #383838;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.main .left-main {
+    float: left;
+    width: 100%;
+}
+
+.main .left-main .main-inner {
+    margin-right: 303px;
+    padding: 15px 15px 15px 15px;
+    margin-bottom: -2000px;
+    padding-bottom: 2000px;
+}
+
+.main .right-side {
+    border-left: 2px solid #383838;
+    width: 270px;
+    float: right;
+    margin-left: -100%;
+    margin-bottom: -2000px;
+    padding-bottom: 2000px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+/*左侧服务器列表区域*/
+
+.main-inner li {
+    border: 2px solid #494a48;
+    min-height: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+
+/*状态园*/
+
+.main-inner li .status {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #939393;
+    background-color: #939393;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-left: 20px;
+    float: left;
+    margin-right: -100%;
+    filter: blur(1px);
+}
+
+.left-main li .info-list {
+    width: 100%;
+    float: right;
+    min-height: 70px;
+    height: auto;
+}
+
+li .info-list .info-list-inner {
+    margin-left: 90px;
+}
+
+
+/*资源列表显示背景颜色*/
+
+.main li.green {
+    background-color: #cde8b8;
+}
+
+.main li.yellow {
+    background-color: #fffbbd;
+}
+
+
+/*具体的服务器资源样式控制*/
+
+.info-list-inner .net {
+    min-height: 30px;
+    margin-top: 5px;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.net .info-url {
+    margin-right: 10px;
+}
+
+.split {
+    color: #a7a590;
+}
+
+.info-list-inner .resource {
+    min-height: 35px;
+    line-height: 25px;
+}
+
+.resource .resource-specify {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.resource .resource-server {
+    position: relative;
+    margin-right: 30px;
+}
+
+.resource .add {
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.resource .resource-del {
+    border: 2px solid #a7a590;
+    border-radius: 6px;
+    margin-left: 2px;
+    display: inline-block;
+    width: 11px;
+    height: 13px;
+    position: absolute;
+    top: 1px;
+    padding: 0;
+    line-height: 10px;
+    padding-left: 1px;
+    color: #a7a590;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.deny {
+    float: right;
+    margin-right: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+    position: relative;
+}
+
+.deny span {
+    border: 2px solid #a7a590;
+    left: -14px;
+    border-radius: 50%;
+    margin-left: -5px;
+    display: inline-block;
+    width: 8px;
+    height: 13px;
+    position: absolute;
+    top: 4px;
+    line-height: 10px;
+    padding-left: 5px;
+    color: #a7a590;
+    font-weight: bold;
+    cursor: pointer;
+    padding-right: 0px;
+    transform: rotateZ(50deg);
+}
+
+
+/*右侧统计和历史信息*/
+
+.right-side .title {
+    font-weight: 500;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.right-side .line {
+    border: 1px solid #a7a590;
+}
+
+.history-list li {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.right-side table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.right-side table tr td {
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+
+/*版权信息样式控制*/
+
+.footer {
+    margin-bottom: 50px;
+    font-size: 13px;
+}
+
+
+/*使用媒体查询实现简单的响应式布局*/
+/*平板*/
+@media screen and (max-width: 1000px) {
+    .main-inner li .status {
+        display: none;
+    }
+    li .info-list .info-list-inner {
+        margin-left: 16px;
+        font-size: 13px;
+    }
+}
+
+/*基本是手机了*/
+@media screen and (max-width: 700px) {
+    body {
+        font-size: 14px;
+    }
+    /*logo*/
+    .header-top .logo-text {
+        font-size: 19px;
+        line-height: 44px;
+        margin-top: 30px;
+    }
+    .header .header-top {
+        line-height: 33px;
+        margin-top: -25px;
+    }
+    .header .menu {
+        height: 22px;
+        line-height: 24px;
+        padding-top: 3px;
+    }
+    .menu .list {
+        width: 60px;
+        font-size: 13px;
+        height: 24px;
+    }
+    /*控制tabs*/
+    .header-top .tabs span {
+        display: block;
+        height: 30px;
+        font-size: 12px;
+        border-top: 2px solid #383838;
+        border-right: 2px solid #383838;
+        border-left: 2px solid #383838;
+        padding: 0 2px 0 2px;
+        border-radius: 15px 15px 0 0;
+        margin-left: 1px;
+        float: left;
+        margin-top: 38px;
+        cursor: pointer;
+    }
+    .header-top .tabs span.active {
+        height: 34px;
+        margin-top: 33px;
+        padding-top: 5px;
+        background-color: #606060;
+        color: #f2f2f2;
+    }
+    .menu .menu-title {
+        display: none;
+    }
+    /*设置主题区域，主要让次要信息隐藏*/
+    .main .right-side {
+        display: none;
+    }
+    .main .left-main .main-inner {
+        margin-right: 0;
+    }
+    .main-inner li .status {
+        display: none;
+    }
+    li .info-list .info-list-inner {
+        margin-left: 16px;
+        font-size: 13px;
+    }
+    .info-list-inner .net {
+        min-height: 30px;
+        margin-top: 4px;
+        line-height: 22px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .info-list-inner .resource {
+        min-height: 33px;
+        line-height: 19px;
+    }
+    .resource .resource-del {
+        top: -1px;
+        padding-left: 3px;
+    }
+    .deny span {
+        top: 1px;
+    }
+}
+/*iphone5*/
+@media screen and (max-width: 330px) {
+    .header-top .logo-text {
+        font-size: 14px;
+        line-height: 44px;
+        margin-top: 31px;
+    }
+}

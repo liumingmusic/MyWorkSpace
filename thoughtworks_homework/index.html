@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>homework</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--重置浏览器样式表-->
+    <link rel="stylesheet" href="./css/reset.css">
+    <!--业务样式表-->
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <!--login info-->
+    <div class="login-info">
+        <span>Signed in as</span>
+        <span class="text user" title="Member">Member</span>
+        <img src="./images/right-arrow.png" alt="Sign out">
+        <span class="text" title="Sign out">Sign out</span>
+    </div>
+    <!--主题区域-->
+    <div class="conatiner">
+        <!--包括logo title、tabs-->
+        <div class="header">
+            <div class="header-top">
+                <h1 class="logo-text">Cruise</h1>
+                <div class="tabs">
+                    <span>DASHBOARD</span><span>MY Cruise</span><span class="active">AGENTS</span><span>HELP</span>
+                </div>
+            </div>
+            <div class="menu">
+                <span class="menu-title">Agents</span>
+                <span class="list">All</span>
+                <span class="list menu-active">Physical</span>
+                <span class="list">Virtual</span>
+            </div>
+        </div>
+        <!--承载区域-->
+        <div class="main">
+            <!--左边信息列表-->
+            <div class="left-main">
+                <!--具体的内容列表-->
+                <div class="main-inner">
+                    <ul>
+                        <li class="green">
+                            <div class="status"></div>
+                            <div class="info-list">
+                                <!--服务器资源内容-->
+                                <div class="info-list-inner">
+                                    <div class="net">
+                                        <span class="info-url">bjstdmngbgr02.thoughtworks.com</span>
+                                        <span class="split">|</span>
+                                        <span class="info-status">idle</span>
+                                        <span class="split">|</span>
+                                        <span class="info-ip">192.168.1.2</span>
+                                        <span class="split">|</span>
+                                        <span class="info-path">/var/lib/cruise-angent</span>
+                                    </div>
+                                    <div class="resource">
+                                        <span class="add">﹢</span><span class="resource-specify">Specify Resources</span>
+                                        <span class="split">|</span>
+                                        <span>Resources:</span>
+                                        <span class="resource-server">ubuntu<span class="resource-del" title="remove resource">×</span></span>
+                                        <span class="deny" title="Deny"><span>|</span>Deny</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="yellow">
+                            <div class="status"></div>
+                            <div class="info-list">
+                                <!--服务器资源内容-->
+                                <div class="info-list-inner">
+                                    <div class="net">
+                                        <span class="info-url">bjstdmngbgr03.thoughtworks.com</span>
+                                        <span class="split">|</span>
+                                        <span class="info-status">idle</span>
+                                        <span class="split">|</span>
+                                        <span class="info-ip">192.168.1.3</span>
+                                        <span class="split">|</span>
+                                        <span class="info-path">/var/lib/cruise-angent</span>
+                                    </div>
+                                    <div class="resource">
+                                        <span class="add">﹢</span><span class="resource-specify">Specify Resources</span>
+                                        <span class="split">|</span>
+                                        <span>Resources:</span>
+                                        <span class="resource-server">ubuntu<span class="resource-del" title="remove resource">×</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="green">
+                            <div class="status"></div>
+                            <div class="info-list">
+                                <!--服务器资源内容-->
+                                <div class="info-list-inner">
+                                    <div class="net">
+                                        <span class="info-url">bjstdmngbgr04.thoughtworks.com</span>
+                                        <span class="split">|</span>
+                                        <span class="info-status">idle</span>
+                                        <span class="split">|</span>
+                                        <span class="info-ip">192.168.1.4</span>
+                                        <span class="split">|</span>
+                                        <span class="info-path">/var/lib/cruise-angent</span>
+                                    </div>
+                                    <div class="resource">
+                                        <span class="add">﹢</span><span class="resource-specify">Specify Resources</span>
+                                        <span class="split">|</span>
+                                        <span>Resources:</span>
+                                        <span class="resource-server">ubuntu<span class="resource-del" title="remove resource">×</span></span>
+                                        <span class="deny" title="Deny"><span>|</span>Deny</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="yellow">
+                            <div class="status"></div>
+                            <div class="info-list">
+                                <!--服务器资源内容-->
+                                <div class="info-list-inner">
+                                    <div class="net">
+                                        <span class="info-url">bjstdmngbgr05.thoughtworks.com</span>
+                                        <span class="split">|</span>
+                                        <span class="info-status">idle</span>
+                                        <span class="split">|</span>
+                                        <span class="info-ip">192.168.1.5</span>
+                                        <span class="split">|</span>
+                                        <span class="info-path">/var/lib/cruise-angent</span>
+                                    </div>
+                                    <div class="resource">
+                                        <span class="add">﹢</span><span class="resource-specify">Specify Resources</span>
+                                        <span class="split">|</span>
+                                        <span>Resources:</span>
+                                        <span class="resource-server">ubuntu<span class="resource-del" title="remove resource">×</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--右边统计和历史列表-->
+            <div class="right-side">
+                <div class="title">Summary</div>
+                <div class="line"></div>
+                <table>
+                    <tr>
+                        <td>building</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>idle</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+                <div class="title">History</div>
+                <div class="line"></div>
+                <ul class="history-list">
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                    <li>bjstdmngbgr02/Acceptance_test</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--底部版权信息-->
+    <div class="footer">
+        Copyright: Thoughtworks Inc
+    </div>
+
+    <!--基础类-->
+    <script src="./js/base.js"></script>
+    <!--业务类-->
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
