@@ -58,9 +58,9 @@
                                         <span class="info-path">/var/lib/cruise-angent</span>
                                     </div>
                                     <div class="resource">
-                                        <span class="add">﹢</span><span class="resource-specify">Specify Resources</span>
+                                        <span class="resource-add">﹢</span><span class="resource-specify">Specify Resources</span>
                                         <span class="split">|</span>
-                                        <span>Resources:</span>
+                                        <span class="resource-title">Resources:</span>
                                         <span class="resource-server">ubuntu<span class="resource-del" title="remove resource">×</span></span>
                                         <span class="deny" title="Deny"><span>|</span>Deny</span>
                                     </div>
@@ -75,17 +75,18 @@
                                     <div class="net">
                                         <span class="info-url">bjstdmngbgr03.thoughtworks.com</span>
                                         <span class="split">|</span>
-                                        <span class="info-status">idle</span>
+                                        <span class="info-status">building</span>
                                         <span class="split">|</span>
                                         <span class="info-ip">192.168.1.3</span>
                                         <span class="split">|</span>
                                         <span class="info-path">/var/lib/cruise-angent</span>
                                     </div>
                                     <div class="resource">
-                                        <span class="add">﹢</span><span class="resource-specify">Specify Resources</span>
+                                        <span class="resource-add">﹢</span><span class="resource-specify">Specify Resources</span>
                                         <span class="split">|</span>
-                                        <span>Resources:</span>
+                                        <span class="resource-title">Resources:</span>
                                         <span class="resource-server">ubuntu<span class="resource-del" title="remove resource">×</span></span>
+                                        <span class="resource-server">mysql<span class="resource-del" title="remove resource">×</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -105,10 +106,11 @@
                                         <span class="info-path">/var/lib/cruise-angent</span>
                                     </div>
                                     <div class="resource">
-                                        <span class="add">﹢</span><span class="resource-specify">Specify Resources</span>
+                                        <span class="resource-add">﹢</span><span class="resource-specify">Specify Resources</span>
                                         <span class="split">|</span>
-                                        <span>Resources:</span>
+                                        <span class="resource-title">Resources:</span>
                                         <span class="resource-server">ubuntu<span class="resource-del" title="remove resource">×</span></span>
+                                        <span class="resource-server">firefox3<span class="resource-del" title="remove resource">×</span></span>
                                         <span class="deny" title="Deny"><span>|</span>Deny</span>
                                     </div>
                                 </div>
@@ -122,17 +124,16 @@
                                     <div class="net">
                                         <span class="info-url">bjstdmngbgr05.thoughtworks.com</span>
                                         <span class="split">|</span>
-                                        <span class="info-status">idle</span>
+                                        <span class="info-status">building</span>
                                         <span class="split">|</span>
                                         <span class="info-ip">192.168.1.5</span>
                                         <span class="split">|</span>
                                         <span class="info-path">/var/lib/cruise-angent</span>
                                     </div>
                                     <div class="resource">
-                                        <span class="add">﹢</span><span class="resource-specify">Specify Resources</span>
+                                        <span class="resource-add">﹢</span><span class="resource-specify">Specify Resources</span>
                                         <span class="split">|</span>
-                                        <span>Resources:</span>
-                                        <span class="resource-server">ubuntu<span class="resource-del" title="remove resource">×</span></span>
+                                        <span class="resource-title">Resources:</span>
                                     </div>
                                 </div>
                             </div>
@@ -171,11 +172,19 @@
             </div>
         </div>
     </div>
+    <!--添加资源弹出-->
+    <div class="add_resource_dialog" id="addPanel">
+        <span class="triangle"></span>
+        <span class="triangle-border"></span>
+        <span>(separate multiple resource name with commas)</span>
+        <input type="text" class="input" id="inputResource"><br>
+        <input type="button" class="add" value="Add Resource" id="btnAddResource">
+        <input type="button" class="close" value="Close" id="btnClosePanel">
+    </div>
     <!--底部版权信息-->
     <div class="footer">
         Copyright: Thoughtworks Inc
     </div>
-
     <!--基础类-->
     <script src="./js/base.js"></script>
     <!--业务类-->
