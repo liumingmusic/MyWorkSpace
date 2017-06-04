@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>聚类分析</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        //待聚类的数据
+        var array = [1, 2, 3, 5, 6, 7, 10, 11, 12, 13, 14];
+        //存放已经被聚类的数据
+        var cluster = {};
+        //聚类时候的记过存放
+        var resultCluster = [];
+        //聚类
+        for (var i = 0; i < array.length; i++) {
+            var currentItem = array[i];
+            //判断当前循环的数据是否已经被聚类过了
+            if (!(currentItem in cluster)) {
+                //获取当前满足条件的数据
+                var accordArray = filters_condition(currentItem, array);
+                var result = accordArray.filter(function (item) {
+                    //判断是否已经被聚类
+                    if (!(item in cluster)) {
+                        cluster[item] = true;
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                //添加到结果数组中，最后成为一个多为数组
+                resultCluster.push(result);
+            }
+        }
+
+        //获取当前点，满足之差为一的点
+        function filters_condition(currentItem, array) {
+            //返回与当前数据之差小于等于3的点
+            return array.filter(function (item) {
+                return Math.abs(item - currentItem) <= 3;
+            })
+        }
+
+        //输出结果
+        console.table(resultCluster);
+    </script>
+</body>
+
+</html>
