@@ -5,25 +5,42 @@
     <title>zepto</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 
 <body>
 
-    <ul id="ul">
-        <l1>dsad 1</l1>
-        <l1>dsad 2</l1>
-        <l1>dsad 3</l1>
-        <l1>dsad 4</l1>
-        <l1>dsad 5</l1>
-    </ul>
+    <script type="text/html" id="temp">
+        <div class='content open'>
+            <ol>
+                <%for(var i = 0; i < data.length; i++){%>
+                    <li>
+                        <a href="<%data[i].href%>">
+                            <%data[i].name%>
+                        </a>
+                    </li>
+                <%}%>
+            </ol>
+            <p>
+                <%content%>
+            </p>
+        </div>
+    </script>
 
-    <div id="div1">
-        <div id="div2"></div>
-    </div>
-
-    <script src="./lmm.js"></script>
+    <script src="./templateEngine/template.js"></script>
     <script>
+        var temp = document.getElementById("temp").innerHTML;
+        var obj = {
+            data: [{
+                name: '刘明明',
+                href: "baidu.com"
+            },
+            {
+                name: '不知道',
+                href: "baidu.com"
+            }],
+            content:'fshjdgsfjhgsfhjd'
+        }
+        console.log(templateEngine_2(temp, obj));
     </script>
 </body>
 
